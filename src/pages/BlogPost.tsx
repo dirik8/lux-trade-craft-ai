@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Calendar, User, Clock, Tag, Facebook, Twitter, Linkedin, Copy } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Tag, Facebook, Twitter, Linkedin, Copy, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 
