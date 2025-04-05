@@ -1,6 +1,7 @@
 
 import React from "react";
 import CTAButton from "./CTAButton";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
   return (
