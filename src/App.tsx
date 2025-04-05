@@ -8,6 +8,11 @@ import Index from "./pages/Index";
 import Education from "./pages/Education";
 import Coaching from "./pages/Coaching";
 import Programs from "./pages/Programs";
+import Testimonials from "./pages/Testimonials";
+import About from "./pages/About";
+import Team from "./pages/Team";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,10 +28,11 @@ const App = () => (
           <Route path="/education" element={<Education />} />
           <Route path="/coaching" element={<Coaching />} />
           <Route path="/programs" element={<Programs />} />
-          <Route path="/testimonials" element={<NotFound />} />
-          <Route path="/about" element={<NotFound />} />
-          <Route path="/join" element={<NotFound />} />
-          <Route path="/blog" element={<NotFound />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/privacy" element={<NotFound />} />
           <Route path="/terms" element={<NotFound />} />
           <Route path="/disclaimers" element={<NotFound />} />
