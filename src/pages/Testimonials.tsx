@@ -17,7 +17,9 @@ const TestimonialsPage = () => {
     { id: 7, title: "Robert P.", vimeoId: "123456795", role: "Platinum Member" },
     { id: 8, title: "Amanda S.", vimeoId: "123456796", role: "Silver Member" },
     { id: 9, title: "Christopher W.", vimeoId: "123456797", role: "Gold Member" },
-    { id: 10, title: "Victoria H.", vimeoId: "123456798", role: "Platinum Member" }
+    { id: 10, title: "Victoria H.", vimeoId: "123456798", role: "Platinum Member" },
+    { id: 11, title: "Thomas B.", vimeoId: "123456799", role: "Gold Member" },
+    { id: 12, title: "Olivia N.", vimeoId: "123456800", role: "Platinum Member" }
   ];
 
   return (

@@ -74,6 +74,18 @@ const fetchBlogPosts = async () => {
       image: "/placeholder.svg",
       featured: false,
       slug: "fundamental-analysis-in-crypto"
+    },
+    {
+      id: 6,
+      title: "NFT Trading: From Collectibles to Investment Opportunities",
+      excerpt: "Explore how NFTs are evolving from digital collectibles into serious investment vehicles with unique market dynamics.",
+      author: "Jennifer Wilson",
+      date: "2025-02-22",
+      category: "NFTs",
+      readTime: "8 min read",
+      image: "/placeholder.svg",
+      featured: false,
+      slug: "nft-trading-investment-opportunities"
     }
   ];
 };
