@@ -140,12 +140,14 @@ export const useBlogPosts = () => {
       const enhancedPosts = await enhanceWithAI(rssPosts);
       
       // Combine with our own original content
-      const originalPosts = [
+      const originalPosts: BlogPost[] = [
         {
           id: 1,
           title: "Understanding Crypto Market Cycles and How to Profit From Them",
           excerpt: "Learn how to identify different phases of crypto market cycles and position your portfolio for maximum gains.",
           author: "Alexander Thompson",
+          authorPosition: "Head of Market Research",
+          authorImage: "/placeholder.svg",
           date: "2025-03-28",
           category: "Market Analysis",
           readTime: "8 min read",
@@ -177,60 +179,75 @@ export const useBlogPosts = () => {
           title: "5 Essential Risk Management Strategies for Crypto Traders",
           excerpt: "Discover the essential risk management techniques that professional traders use to protect their capital in volatile markets.",
           author: "David Patel",
+          authorPosition: "Senior Risk Analyst",
+          authorImage: "/placeholder.svg",
           date: "2025-03-22",
           category: "Trading Strategies",
           readTime: "6 min read",
           image: "/placeholder.svg",
           featured: false,
-          slug: "essential-risk-management-strategies"
+          slug: "essential-risk-management-strategies",
+          content: "This is the content for the risk management article."
         },
         {
           id: 3,
           title: "Technical Analysis 101: Essential Indicators for Crypto Trading",
           excerpt: "A comprehensive guide to the most important technical indicators that every crypto trader should understand and use.",
           author: "Sophia Rodriguez",
+          authorPosition: "Technical Analysis Specialist",
+          authorImage: "/placeholder.svg",
           date: "2025-03-15",
           category: "Technical Analysis",
           readTime: "10 min read",
           image: "/placeholder.svg",
           featured: false,
-          slug: "technical-analysis-101"
+          slug: "technical-analysis-101",
+          content: "This is the content for the technical analysis article."
         },
         {
           id: 4,
           title: "DeFi Yield Farming: Opportunities and Risks",
           excerpt: "An in-depth look at yield farming strategies, potential returns, and the hidden risks to be aware of.",
           author: "Michael Chen",
+          authorPosition: "DeFi Researcher",
+          authorImage: "/placeholder.svg",
           date: "2025-03-08",
           category: "DeFi",
           readTime: "7 min read",
           image: "/placeholder.svg",
           featured: false,
-          slug: "defi-yield-farming"
+          slug: "defi-yield-farming",
+          content: "This is the content for the DeFi yield farming article."
         },
         {
           id: 5,
           title: "Fundamental Analysis in Crypto: Evaluating Projects for Long-Term Value",
           excerpt: "Learn how to assess crypto projects beyond the hype by analyzing tokenomics, team experience, and real-world utility.",
           author: "Robert Kim",
+          authorPosition: "Fundamental Analyst",
+          authorImage: "/placeholder.svg",
           date: "2025-03-01",
           category: "Fundamental Analysis",
           readTime: "9 min read",
           image: "/placeholder.svg",
           featured: false,
-          slug: "fundamental-analysis-in-crypto"
+          slug: "fundamental-analysis-in-crypto",
+          content: "This is the content for the fundamental analysis article."
         },
         {
           id: 6,
           title: "NFT Trading: From Collectibles to Investment Opportunities",
           excerpt: "Explore how NFTs are evolving from digital collectibles into serious investment vehicles with unique market dynamics.",
           author: "Jennifer Wilson",
+          authorPosition: "NFT Market Specialist",
+          authorImage: "/placeholder.svg",
           date: "2025-02-22",
           category: "NFTs",
           readTime: "8 min read",
           image: "/placeholder.svg",
           featured: false,
-          slug: "nft-trading-investment-opportunities"
+          slug: "nft-trading-investment-opportunities",
+          content: "This is the content for the NFT trading article."
         }
       ];
       
