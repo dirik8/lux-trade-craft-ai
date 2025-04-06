@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 const CTASection = () => {
   const controls = useAnimation();
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, threshold: 0.2 });
+  // Remove the threshold property as it's not in the UseInViewOptions type
+  const inView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (inView) {
@@ -151,3 +152,4 @@ const CTASection = () => {
 };
 
 export default CTASection;
+
