@@ -6,107 +6,21 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Calendar, User, Clock, ArrowRight, Tag } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-
-// Mock API function (replace with actual API call when backend is available)
-const fetchBlogPosts = async () => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  return [
-    {
-      id: 1,
-      title: "Understanding Crypto Market Cycles and How to Profit From Them",
-      excerpt: "Learn how to identify different phases of crypto market cycles and position your portfolio for maximum gains.",
-      author: "Alexander Thompson",
-      date: "2025-03-28",
-      category: "Market Analysis",
-      readTime: "8 min read",
-      image: "/placeholder.svg",
-      featured: true,
-      slug: "understanding-crypto-market-cycles"
-    },
-    {
-      id: 2,
-      title: "5 Essential Risk Management Strategies for Crypto Traders",
-      excerpt: "Discover the essential risk management techniques that professional traders use to protect their capital in volatile markets.",
-      author: "David Patel",
-      date: "2025-03-22",
-      category: "Trading Strategies",
-      readTime: "6 min read",
-      image: "/placeholder.svg",
-      featured: false,
-      slug: "essential-risk-management-strategies"
-    },
-    {
-      id: 3,
-      title: "Technical Analysis 101: Essential Indicators for Crypto Trading",
-      excerpt: "A comprehensive guide to the most important technical indicators that every crypto trader should understand and use.",
-      author: "Sophia Rodriguez",
-      date: "2025-03-15",
-      category: "Technical Analysis",
-      readTime: "10 min read",
-      image: "/placeholder.svg",
-      featured: false,
-      slug: "technical-analysis-101"
-    },
-    {
-      id: 4,
-      title: "DeFi Yield Farming: Opportunities and Risks",
-      excerpt: "An in-depth look at yield farming strategies, potential returns, and the hidden risks to be aware of.",
-      author: "Michael Chen",
-      date: "2025-03-08",
-      category: "DeFi",
-      readTime: "7 min read",
-      image: "/placeholder.svg",
-      featured: false,
-      slug: "defi-yield-farming"
-    },
-    {
-      id: 5,
-      title: "Fundamental Analysis in Crypto: Evaluating Projects for Long-Term Value",
-      excerpt: "Learn how to assess crypto projects beyond the hype by analyzing tokenomics, team experience, and real-world utility.",
-      author: "Robert Kim",
-      date: "2025-03-01",
-      category: "Fundamental Analysis",
-      readTime: "9 min read",
-      image: "/placeholder.svg",
-      featured: false,
-      slug: "fundamental-analysis-in-crypto"
-    },
-    {
-      id: 6,
-      title: "NFT Trading: From Collectibles to Investment Opportunities",
-      excerpt: "Explore how NFTs are evolving from digital collectibles into serious investment vehicles with unique market dynamics.",
-      author: "Jennifer Wilson",
-      date: "2025-02-22",
-      category: "NFTs",
-      readTime: "8 min read",
-      image: "/placeholder.svg",
-      featured: false,
-      slug: "nft-trading-investment-opportunities"
-    }
-  ];
-};
+import { Search, Calendar, User, Clock, ArrowRight, Tag, Rss } from "lucide-react";
+import { useBlogPosts } from "@/services/blogService";
+import { Helmet } from "react-helmet-async";
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   
-  const { data: blogPosts = [], isLoading } = useQuery({
-    queryKey: ["blogPosts"],
-    queryFn: fetchBlogPosts,
-  });
+  const { data: blogPosts = [], isLoading } = useBlogPosts();
 
-  const categories = [
-    "All Categories", 
-    "Market Analysis", 
-    "Trading Strategies", 
-    "Technical Analysis", 
-    "DeFi", 
-    "Fundamental Analysis"
-  ];
+  // Extract unique categories
+  const uniqueCategories = blogPosts ? 
+    Array.from(new Set(blogPosts.map(post => post.category))) : [];
+  
+  const categories = ["All Categories", ...uniqueCategories];
   
   // Filter posts based on search term and category
   const filteredPosts = blogPosts.filter(post => {
@@ -120,10 +34,21 @@ const BlogPage = () => {
   // Get featured post
   const featuredPost = blogPosts.find(post => post.featured);
   // Get non-featured posts
-  const regularPosts = blogPosts.filter(post => !post.featured);
+  const regularPosts = filteredPosts.filter(post => post.id !== featuredPost?.id);
 
   return (
     <>
+      <Helmet>
+        <title>BLKR Trading Blog | Crypto & Trading Insights</title>
+        <meta name="description" content="Expert insights on cryptocurrency trading, market analysis, and wealth-building strategies from BLKR Trading's elite team of professional traders." />
+        <meta name="keywords" content="crypto trading blog, trading strategies, market analysis, cryptocurrency insights, BLKR Trading" />
+        <meta property="og:title" content="BLKR Trading Blog | Crypto & Trading Insights" />
+        <meta property="og:description" content="Expert insights on cryptocurrency trading, market analysis, and wealth-building strategies from BLKR Trading's elite team of professional traders." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/placeholder.svg" />
+        <link rel="canonical" href="https://blkrtrading.com/blog" />
+      </Helmet>
+      
       <Navigation />
       <main className="bg-blkr-black min-h-screen pt-24">
         <div className="container mx-auto px-4 py-12">
@@ -134,6 +59,10 @@ const BlogPage = () => {
             <p className="mt-4 text-xl text-blkr-offWhite/80 max-w-3xl mx-auto">
               Insights, strategies, and market analysis to elevate your crypto trading knowledge
             </p>
+            <div className="flex items-center justify-center mt-4 text-sm text-blkr-gold">
+              <Rss size={16} className="mr-1" />
+              <span>Auto-updated with latest trading insights</span>
+            </div>
           </div>
 
           {/* Search and filter */}
@@ -184,6 +113,9 @@ const BlogPage = () => {
                           <div className="flex items-center gap-2 mb-2">
                             <Tag size={16} className="text-blkr-gold" />
                             <span className="text-sm text-blkr-gold">{featuredPost.category}</span>
+                            {featuredPost.source && (
+                              <span className="text-xs text-blkr-offWhite/50 ml-2">via {featuredPost.source}</span>
+                            )}
                           </div>
                           <h3 className="text-2xl font-bold mb-2">{featuredPost.title}</h3>
                           <p className="text-blkr-offWhite/80 mb-4">{featuredPost.excerpt}</p>
@@ -216,9 +148,9 @@ const BlogPage = () => {
               {/* Regular posts */}
               <div>
                 <h2 className="text-2xl font-bold mb-6">Latest Articles</h2>
-                {filteredPosts.length > 0 ? (
+                {regularPosts.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredPosts.map(post => (
+                    {regularPosts.map(post => (
                       <Card key={post.id} className="card-premium overflow-hidden">
                         <div className="aspect-video overflow-hidden">
                           <img 
@@ -231,6 +163,9 @@ const BlogPage = () => {
                           <div className="flex items-center gap-2 mb-2">
                             <Tag size={16} className="text-blkr-gold" />
                             <span className="text-sm text-blkr-gold">{post.category}</span>
+                            {post.source && (
+                              <span className="text-xs text-blkr-offWhite/50 ml-2">via {post.source}</span>
+                            )}
                           </div>
                           <h3 className="text-xl font-bold mb-2">{post.title}</h3>
                           <p className="text-blkr-offWhite/80 text-sm mb-4">{post.excerpt}</p>
