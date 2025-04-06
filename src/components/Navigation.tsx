@@ -34,6 +34,7 @@ const Navigation = () => {
     { name: "Programs", path: "/programs" },
     { name: "Testimonials", path: "/testimonials" },
     { name: "About", path: "/about" },
+    { name: "Team", path: "/team" },
     { name: "Blog", path: "/blog" },
   ];
 
@@ -102,6 +103,20 @@ const Navigation = () => {
                   {link.name}
                 </Link>
               ))}
+              <Link 
+                to="/team" 
+                className="text-blkr-offWhite hover:text-blkr-gold py-2 transition-colors duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Our Team
+              </Link>
+              <Link 
+                to="/apply-to-join" 
+                className="text-blkr-offWhite hover:text-blkr-gold py-2 transition-colors duration-300"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Apply to Join
+              </Link>
               <Button
                 className="cta-button mt-4"
                 onClick={() => {

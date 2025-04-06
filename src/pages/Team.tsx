@@ -4,6 +4,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { LinkedinIcon, TwitterIcon, GlobeIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import CTAButton from "@/components/CTAButton";
 
 const TeamPage = () => {
   const teamMembers = [
@@ -86,8 +88,64 @@ const TeamPage = () => {
       linkedin: "https://linkedin.com",
       twitter: "",
       website: "https://example.com"
+    },
+    {
+      id: 9,
+      name: "William Jackson",
+      role: "Technical Trading Coach",
+      image: "/placeholder.svg",
+      bio: "Specializes in chart pattern recognition and technical indicator strategies for day traders.",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      website: ""
+    },
+    {
+      id: 10,
+      name: "Elizabeth Taylor",
+      role: "Sentiment Analysis Expert",
+      image: "/placeholder.svg",
+      bio: "Data scientist focused on social media and news sentiment analysis for trading opportunities.",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      website: ""
+    },
+    {
+      id: 11,
+      name: "Daniel Lee",
+      role: "Institutional Relations",
+      image: "/placeholder.svg",
+      bio: "Former investment banker responsible for developing relationships with institutional trading partners.",
+      linkedin: "https://linkedin.com",
+      twitter: "",
+      website: "https://example.com"
+    },
+    {
+      id: 12,
+      name: "Sarah Cooper",
+      role: "Trading Psychology Coach",
+      image: "/placeholder.svg",
+      bio: "Certified coach specializing in mental resilience and psychological aspects of successful trading.",
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      website: ""
     }
   ];
+
+  // Animation variants for the team section
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 }
+  };
 
   return (
     <>
@@ -95,7 +153,12 @@ const TeamPage = () => {
       <main className="bg-blkr-black min-h-screen pt-24">
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-playfair">
                 Our Expert Team
               </h1>
@@ -104,44 +167,56 @@ const TeamPage = () => {
                 together decades of experience across traditional finance, blockchain technology, 
                 and cryptocurrency trading.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
               {teamMembers.map((member) => (
-                <Card key={member.id} className="card-premium overflow-hidden">
-                  <CardContent className="p-0">
-                    <div className="aspect-square overflow-hidden">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold">{member.name}</h3>
-                      <p className="text-sm text-blkr-gold mb-3">{member.role}</p>
-                      <p className="text-blkr-offWhite/80 text-sm mb-4">{member.bio}</p>
-                      <div className="flex space-x-3">
-                        {member.linkedin && (
-                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
-                            <LinkedinIcon size={18} />
-                          </a>
-                        )}
-                        {member.twitter && (
-                          <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
-                            <TwitterIcon size={18} />
-                          </a>
-                        )}
-                        {member.website && (
-                          <a href={member.website} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
-                            <GlobeIcon size={18} />
-                          </a>
-                        )}
+                <motion.div key={member.id} variants={item}>
+                  <Card className="card-premium overflow-hidden hover:shadow-lg hover:shadow-blkr-gold/20 transition-all duration-300">
+                    <CardContent className="p-0">
+                      <div className="aspect-square overflow-hidden">
+                        <img 
+                          src={member.image} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105" 
+                        />
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold">{member.name}</h3>
+                        <p className="text-sm text-blkr-gold mb-3">{member.role}</p>
+                        <p className="text-blkr-offWhite/80 text-sm mb-4">{member.bio}</p>
+                        <div className="flex space-x-3">
+                          {member.linkedin && (
+                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
+                              <LinkedinIcon size={18} />
+                            </a>
+                          )}
+                          {member.twitter && (
+                            <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
+                              <TwitterIcon size={18} />
+                            </a>
+                          )}
+                          {member.website && (
+                            <a href={member.website} target="_blank" rel="noopener noreferrer" className="text-blkr-offWhite/70 hover:text-blkr-gold">
+                              <GlobeIcon size={18} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
+            </motion.div>
+            
+            <div className="mt-20 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">Want to join our elite trading team?</h2>
+              <CTAButton text="Apply for a Position" href="/apply-to-join" className="text-lg px-8 py-6" />
             </div>
           </div>
         </section>

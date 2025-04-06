@@ -14,6 +14,8 @@ import Team from "./pages/Team";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import ApplyToJoin from "./pages/ApplyToJoin";
+import Join from "./pages/Join";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/apply-to-join" element={<ApplyToJoin />} />
+          <Route path="/join" element={<Join />} />
           <Route path="/privacy" element={<NotFound />} />
           <Route path="/terms" element={<NotFound />} />
           <Route path="/disclaimers" element={<NotFound />} />
