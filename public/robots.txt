@@ -3,8 +3,9 @@
 User-agent: *
 Allow: /
 
-# Block specific paths
+# Block admin area
 Disallow: /admin/
+Disallow: /admin
 Disallow: /private/
 
 # Sitemap location
@@ -22,3 +23,4 @@ Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
+

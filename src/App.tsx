@@ -17,6 +17,8 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import ApplyToJoin from "./pages/ApplyToJoin";
 import Join from "./pages/Join";
+import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +41,8 @@ const App = () => (
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/apply-to-join" element={<ApplyToJoin />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/privacy" element={<NotFound />} />
             <Route path="/terms" element={<NotFound />} />
             <Route path="/disclaimers" element={<NotFound />} />

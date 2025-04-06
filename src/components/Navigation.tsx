@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Trophy, Shield, Star } from "lucide-react";
+import { Menu, X, ChevronDown, Trophy, Shield, Star, Contact } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,6 +38,7 @@ const Navigation = () => {
     { name: "About", path: "/about" },
     { name: "Team", path: "/team" },
     { name: "Blog", path: "/blog" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const menuVariants = {
